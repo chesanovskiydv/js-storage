@@ -10,7 +10,7 @@ function init() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        window.SolarSystem = new SolarSystem(canvas, PLANETS);
+        window.SolarSystem = new SolarSystem(canvas, 50, PLANETS);
         window.SolarSystem.run();
     }
 }

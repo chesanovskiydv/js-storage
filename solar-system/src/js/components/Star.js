@@ -15,7 +15,8 @@ class Star extends SolarSystemCircle {
      * @param {Point|null} [center]
      * @param {Number} [radius]
      */
-    constructor(solarSystem, center = null, radius = 1) {
+    constructor(solarSystem, center = null, radius = null) {
+        radius = radius || Math.round(Math.min(solarSystem.width, solarSystem.height) / 400);
         center = center || solarSystem.randomPoint();
         super(solarSystem, center, radius);
 

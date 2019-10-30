@@ -71,15 +71,16 @@ class SolarSystem {
 
     /**
      * @param {HTMLCanvasElement} canvas
+     * @param {Number} [sunRadius]
      * @param {Object} [planets]
      * @param {Number} [starsCount]
      * @param {Object} [config]
      */
-    constructor(canvas, planets = [], starsCount = 200, config = {}) {
+    constructor(canvas, sunRadius = 50, planets = [], starsCount = 200, config = {}) {
         this.context = canvas.getContext('2d');
         this.config = {...this.config, ...config};
 
-        this.sun = new Sun(this, this.center, 50);
+        this.sun = new Sun(this, this.center, sunRadius);
         this.planets = Object.values(planets).map(
             planet => new Planet(
                 this,
@@ -124,8 +125,13 @@ class SolarSystem {
         );
     }
 
+    clear() {
+        --this.context.canvas.width;
+        ++this.context.canvas.width;
+    }
+
     render() {
-        this.context.clearRect(0, 0, this.width, this.height);
+        this.clear();
 
         this.context.fillStyle = '#000';
         this.context.fillRect(0, 0, this.width, this.height);
